@@ -1,0 +1,1540 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Виробнича практика — Диндин Богдан</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #0d1117;
+        --bg2: #161b22;
+        --bg3: #1c2128;
+        --blue: #4f8ef7;
+        --blue2: #2d6be4;
+        --gold: #f0b429;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --border: #30363d;
+        --r: 10px;
+      }
+      body {
+        font-family: "Manrope", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* NAV */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        background: rgba(13, 17, 23, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 32px;
+        height: 56px;
+      }
+      .nav-logo {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--blue);
+        white-space: nowrap;
+      }
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        white-space: nowrap;
+        transition: 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+        background: var(--bg3);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 72px 32px;
+      }
+      section:nth-child(odd) {
+        background: var(--bg);
+      }
+      section:nth-child(even) {
+        background: var(--bg2);
+      }
+      .inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .tag {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 10px;
+      }
+      h2 {
+        font-size: clamp(24px, 4vw, 36px);
+        font-weight: 800;
+        margin-bottom: 28px;
+      }
+      h2 span {
+        color: var(--blue);
+      }
+      h3 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 50% 0%,
+            rgba(45, 107, 228, 0.15),
+            transparent
+          ),
+          var(--bg);
+        padding: 80px 24px;
+      }
+      .hero-badge {
+        display: inline-block;
+        background: rgba(79, 142, 247, 0.15);
+        border: 1px solid rgba(79, 142, 247, 0.3);
+        color: var(--blue);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px 16px;
+        border-radius: 20px;
+        margin-bottom: 24px;
+        letter-spacing: 0.5px;
+      }
+      .hero-name {
+        font-size: clamp(32px, 7vw, 64px);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 12px;
+      }
+      .hero-name span {
+        color: var(--blue);
+      }
+      .hero-sub {
+        color: var(--muted);
+        font-size: 15px;
+        margin-bottom: 40px;
+      }
+      .stats {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat-n {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--blue);
+        line-height: 1;
+      }
+      .stat-l {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      /* CARDS GRID */
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      .g2 {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      .g3 {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+      .card {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 20px;
+      }
+      .card-icon {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .card-title {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: var(--text);
+      }
+      .card-body {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* INFO ROWS */
+      .info-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .info-row {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .info-ico {
+        font-size: 18px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .info-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        margin-bottom: 2px;
+      }
+      .info-val {
+        font-size: 14px;
+        color: var(--text);
+      }
+      .info-val small {
+        color: var(--muted);
+        font-size: 12px;
+        display: block;
+      }
+
+      /* TEAM */
+      .team {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .member {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 16px;
+      }
+      .avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--bg2);
+        border: 2px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--blue);
+        flex-shrink: 0;
+      }
+      .avatar.me {
+        background: rgba(240, 180, 41, 0.12);
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .m-name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .m-role {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .me-badge {
+        margin-left: auto;
+        background: rgba(240, 180, 41, 0.15);
+        border: 1px solid rgba(240, 180, 41, 0.3);
+        color: var(--gold);
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 10px;
+      }
+
+      /* TECH TAGS */
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .tag-pill {
+        background: rgba(79, 142, 247, 0.12);
+        border: 1px solid rgba(79, 142, 247, 0.25);
+        color: var(--blue);
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+      .tag-pill.green {
+        background: rgba(34, 197, 94, 0.1);
+        border-color: rgba(34, 197, 94, 0.25);
+        color: #4ade80;
+      }
+      .tag-pill.gold {
+        background: rgba(240, 180, 41, 0.1);
+        border-color: rgba(240, 180, 41, 0.25);
+        color: var(--gold);
+      }
+
+      /* CODE */
+      .code-box {
+        background: #0a0f14;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+        color: #a8b2c0;
+        margin-top: 12px;
+        overflow-x: auto;
+      }
+      .kw {
+        color: #f97583;
+      }
+      .str {
+        color: #e3b341;
+      }
+      .cm {
+        color: #6a737d;
+      }
+
+      /* ALGO STEPS */
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .step {
+        display: flex;
+        gap: 16px;
+        position: relative;
+        padding-bottom: 24px;
+      }
+      .step:last-child {
+        padding-bottom: 0;
+      }
+      .step:not(:last-child)::before {
+        content: "";
+        position: absolute;
+        left: 19px;
+        top: 40px;
+        bottom: 0;
+        width: 2px;
+        background: var(--border);
+      }
+      .step-num {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--blue2);
+        color: #fff;
+        font-weight: 800;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        z-index: 1;
+      }
+      .step-content h3 {
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+
+      /* MOCKUP */
+      .mockup {
+        background: #0a0f14;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        font-size: 13px;
+      }
+      .mock-bar {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .mock-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+      .mock-field {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .mock-btn {
+        display: inline-block;
+        background: var(--blue2);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 7px 16px;
+        border-radius: 6px;
+        margin-top: 4px;
+      }
+      .mock-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      /* TABLE */
+      .tbl-wrap {
+        overflow-x: auto;
+        margin-top: 12px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      th {
+        background: var(--bg3);
+        padding: 10px 14px;
+        text-align: left;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        border-bottom: 2px solid var(--border);
+      }
+      td {
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border);
+        color: var(--text);
+      }
+      tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      /* SCHEMA */
+      .schema {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: center;
+        margin: 24px 0;
+      }
+      .schema-box {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 18px;
+        text-align: center;
+        min-width: 120px;
+      }
+      .schema-box.hi {
+        border-color: var(--blue);
+        background: rgba(45, 107, 228, 0.1);
+      }
+      .schema-box b {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .schema-box small {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .schema-arr {
+        color: var(--muted);
+        padding: 0 8px;
+        font-size: 20px;
+      }
+
+      /* RESULTS */
+      .result-item {
+        display: flex;
+        gap: 16px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .result-item:last-child {
+        border-bottom: none;
+      }
+      .result-num {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--border);
+        line-height: 1;
+        flex-shrink: 0;
+        width: 48px;
+      }
+      .result-item h3 {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      /* PROGRESS */
+      .prog-row {
+        margin-bottom: 12px;
+      }
+      .prog-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 5px;
+      }
+      .prog-track {
+        height: 4px;
+        background: var(--bg3);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%;
+        background: var(--blue2);
+        border-radius: 2px;
+        width: 0;
+        transition: width 1.2s ease;
+      }
+
+      /* PHOTO GRID */
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+      }
+      .photo-card {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        aspect-ratio: 4/3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .photo-card .ico {
+        font-size: 32px;
+      }
+
+      /* ABOUT */
+      .about-card {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .about-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(240, 180, 41, 0.12);
+        border: 3px solid var(--gold);
+        color: var(--gold);
+        font-weight: 800;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .about-name {
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .about-meta {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 2;
+      }
+      .about-meta strong {
+        color: var(--text);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        text-align: center;
+        padding: 24px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* REVEAL */
+      .rv {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .rv.on {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* SECTION DIVIDER */
+      .sec-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 0;
+      }
+
+      @media (max-width: 600px) {
+        nav {
+          padding: 0 16px;
+        }
+        .nav-links a {
+          font-size: 11px;
+          padding: 4px 7px;
+        }
+        section {
+          padding: 52px 16px;
+        }
+        .schema {
+          flex-direction: column;
+        }
+        .schema-arr {
+          transform: rotate(90deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-logo">Виробнича практика 2026</div>
+      <div class="nav-links">
+        <a href="#info">Про практику</a>
+        <a href="#task">Завдання</a>
+        <a href="#algo">Алгоритм</a>
+        <a href="#apro">Апробація</a>
+        <a href="#tables">Таблиці</a>
+        <a href="#schema">Схеми</a>
+        <a href="#results">Результати</a>
+        <a href="#photo">Фотоархів</a>
+        <a href="#about">Про автора</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="inner" style="text-align: center">
+        <div class="hero-badge">Виробнича практика · 2026</div>
+        <div class="hero-name">Диндин <span>Богдан Васильович</span></div>
+        <div class="hero-sub">
+          Data Engineer · Група КН-41 · Спеціальність 122 «Комп'ютерні науки»
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-n">6</div>
+            <div class="stat-l">Тижнів</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">40</div>
+            <div class="stat-l">Роб. днів</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">4</div>
+            <div class="stat-l">Розробники</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">10</div>
+            <div class="stat-l">Років архіву</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 ПРО ПРАКТИКУ -->
+    <section id="info">
+      <div class="inner">
+        <div class="tag rv">01 · Про практику</div>
+        <h2 class="rv">Загальна <span>інформація</span></h2>
+        <div class="grid g2 rv">
+          <div class="card">
+            <div class="info-rows">
+              <div class="info-row">
+                <div class="info-ico">📅</div>
+                <div>
+                  <div class="info-label">Термін</div>
+                  <div class="info-val">
+                    16 березня — 24 квітня 2026 р.<small>40 робочих днів</small>
+                  </div>
+                </div>
+              </div>
+              <div class="info-row">
+                <div class="info-ico">🏛️</div>
+                <div>
+                  <div class="info-label">Виробнича база</div>
+                  <div class="info-val">
+                    Деканат ФМІ КНУ ім. Василя Стефаника<small
+                      >вул. Шевченка 57, ауд. 317, Івано-Франківськ</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="info-row">
+                <div class="info-ico">💼</div>
+                <div>
+                  <div class="info-label">Робоче місце</div>
+                  <div class="info-val">Інженер-програміст</div>
+                </div>
+              </div>
+              <div class="info-row">
+                <div class="info-ico">👤</div>
+                <div>
+                  <div class="info-label">Керівник від бази</div>
+                  <div class="info-val">
+                    Соломко Андрій Васильович<small
+                      >Заступник декана з НМР</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="info-row">
+                <div class="info-ico">🎓</div>
+                <div>
+                  <div class="info-label">Керівник від кафедри</div>
+                  <div class="info-val">доц. Превисокова Н.В.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="margin-bottom: 12px">
+              👥 Склад групи
+            </div>
+            <div class="team">
+              <div class="member">
+                <div class="avatar">ТА</div>
+                <div>
+                  <div class="m-name">Тарас Андрій Ігорович</div>
+                  <div class="m-role">Backend Developer</div>
+                </div>
+              </div>
+              <div class="member">
+                <div class="avatar me">БД</div>
+                <div>
+                  <div class="m-name">Диндин Богдан Васильович</div>
+                  <div class="m-role">Data Engineer</div>
+                </div>
+                <div class="me-badge">Я</div>
+              </div>
+              <div class="member">
+                <div class="avatar">ГМ</div>
+                <div>
+                  <div class="m-name">Горайчук Михайло Олександрович</div>
+                  <div class="m-role">UI/UX Frontend Developer</div>
+                </div>
+              </div>
+              <div class="member">
+                <div class="avatar">КЛ</div>
+                <div>
+                  <div class="m-name">Кучірка Любомир Іванович</div>
+                  <div class="m-role">Frontend Logic &amp; Reporting</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 ІНДИВІДУАЛЬНЕ ЗАВДАННЯ -->
+    <section id="task">
+      <div class="inner">
+        <div class="tag rv">02 · Індивідуальне завдання</div>
+        <h2 class="rv">Програмний <span>продукт</span></h2>
+
+        <div class="card rv" style="margin-bottom: 24px">
+          <h3 style="font-size: 22px; margin-bottom: 8px">
+            «Alumni <span style="color: var(--blue)">Database</span>»
+          </h3>
+          <p>
+            Веб-система обліку та пошуку випускників університету для
+            автоматизації роботи деканату з масивами даних ЄДЕБО. Дозволяє
+            завантажувати файли .xlsx та .csv, фільтрувати за різними
+            параметрами та експортувати результати у CSV та PDF.
+          </p>
+          <div class="tags">
+            <span class="tag-pill">Node.js</span
+            ><span class="tag-pill">Express.js</span
+            ><span class="tag-pill">SQLite</span
+            ><span class="tag-pill">React (Vite)</span
+            ><span class="tag-pill">xlsx</span
+            ><span class="tag-pill">iconv-lite</span
+            ><span class="tag-pill">pdfMake</span>
+          </div>
+        </div>
+
+        <div class="grid g3 rv">
+          <div class="card">
+            <div class="card-icon">🎯</div>
+            <div class="card-title">Тема і мета</div>
+            <div class="card-body">
+              Автоматизація обробки файлів ЄДЕБО: завантаження, зберігання,
+              пошук та виведення даних про випускників.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔧</div>
+            <div class="card-title">Моя роль</div>
+            <div class="card-body">
+              <strong style="color: var(--text)">Data Engineer</strong> —
+              парсинг файлів, визначення кодування, функція findVal, транзакції
+              БД.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">📦</div>
+            <div class="card-title">Застосування</div>
+            <div class="card-body">
+              Сортування особових справ студентів за 2016–2025 рр.; формування
+              алфавітних списків випускників.
+            </div>
+          </div>
+        </div>
+
+        <div class="grid g2 rv" style="margin-top: 24px">
+          <div class="card">
+            <div class="card-title">Вхідні формати</div>
+            <div class="card-body">
+              <strong style="color: var(--text)">.xlsx</strong> — Microsoft
+              Excel через бібліотеку xlsx<br /><strong
+                style="color: var(--text)"
+                >.csv</strong
+              >
+              — UTF-8 або Windows-1251<br />Підтримка різних версій шаблонів
+              ЄДЕБО
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Вихідні формати</div>
+            <div class="card-body">
+              <strong style="color: var(--text)">CSV</strong> — з BOM-міткою для
+              коректної кирилиці<br /><strong style="color: var(--text)"
+                >PDF</strong
+              >
+              — ландшафтний через pdfMake<br />React-інтерфейс у браузері
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 АЛГОРИТМ -->
+    <section id="algo">
+      <div class="inner">
+        <div class="tag rv">03 · Алгоритм</div>
+        <h2 class="rv">Модуль <span>Data Engineer</span></h2>
+        <div class="grid g2">
+          <div class="steps rv">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h3>Визначення типу файлу</h3>
+                <p>Тип визначається за сигнатурою байтів, а не розширенням.</p>
+                <div class="code-box">
+                  <span class="kw">if</span> (buffer[0] ===
+                  <span class="str">0x50</span>) {<br />&nbsp;&nbsp;<span
+                    class="cm"
+                    >// .xlsx — ZIP-архів</span
+                  ><br />&nbsp;&nbsp;parseExcel(buffer);<br />}
+                  <span class="kw">else</span> { parseCsv(buffer); }
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h3>Визначення кодування CSV</h3>
+                <p>
+                  Спочатку читається як UTF-8. Якщо є символи-замінники —
+                  перекодується з Windows-1251.
+                </p>
+                <div class="code-box">
+                  <span class="cm">// UTF-8 → перевірка → Win-1251</span
+                  ><br /><span class="kw">const</span> text =
+                  hasGarbage(utf8)<br />&nbsp;&nbsp;? iconv.decode(buf,
+                  <span class="str">'win1251'</span>)<br />&nbsp;&nbsp;: utf8;
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h3>Функція findVal</h3>
+                <p>
+                  Пошук колонок за масивом можливих ключових слів для підтримки
+                  різних версій ЄДЕБО.
+                </p>
+                <div class="code-box">
+                  <span class="kw">function</span>
+                  <span class="str">findVal</span>(row, keys) {<br />&nbsp;&nbsp;<span
+                    class="kw"
+                    >return</span
+                  >
+                  keys.map(k => row[k])<br />&nbsp;&nbsp;&nbsp;&nbsp;.find(v =>
+                  v !== undefined);<br />}
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h3>Транзакції SQLite</h3>
+                <p>
+                  ROLLBACK при будь-якій помилці — жодного часткового
+                  завантаження.
+                </p>
+                <div class="code-box">
+                  db.run(<span class="str">'BEGIN TRANSACTION'</span
+                  >);<br /><span class="kw">try</span> {
+                  <span class="cm">/* INSERT */</span> db.run(<span class="str"
+                    >'COMMIT'</span
+                  >); }<br /><span class="kw">catch</span>(e) { db.run(<span
+                    class="str"
+                    >'ROLLBACK'</span
+                  >); }
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rv">
+            <div class="card" style="margin-bottom: 16px">
+              <div class="card-icon">🗂️</div>
+              <div class="card-title">Участь у роботі підрозділу</div>
+              <div class="card-body">
+                За допомогою Alumni Database сформовано алфавітні списки
+                випускників за кожен рік (2016–2025). Командою з 4 практикантів
+                упорядковано особові справи деканату за 10 навчальних років.
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title" style="margin-bottom: 12px">
+                Прогрес виконання
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>Парсинг файлів</span><span>100%</span>
+                </div>
+                <div class="prog-track">
+                  <div class="prog-fill" data-w="100"></div>
+                </div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>Визначення кодування</span><span>100%</span>
+                </div>
+                <div class="prog-track">
+                  <div class="prog-fill" data-w="100"></div>
+                </div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>Функція findVal</span><span>100%</span>
+                </div>
+                <div class="prog-track">
+                  <div class="prog-fill" data-w="100"></div>
+                </div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>Транзакції SQLite</span><span>100%</span>
+                </div>
+                <div class="prog-track">
+                  <div class="prog-fill" data-w="100"></div>
+                </div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>Архів деканату (2016–2025)</span><span>100%</span>
+                </div>
+                <div class="prog-track">
+                  <div class="prog-fill" data-w="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 АПРОБАЦІЯ -->
+    <section id="apro">
+      <div class="inner">
+        <div class="tag rv">04 · Апробація</div>
+        <h2 class="rv">Скріншоти та <span>тестування</span></h2>
+        <div class="rv">
+          <div class="card">
+            <div class="card-title" style="margin-bottom: 16px">
+              🖥️ Інтерфейс Alumni Database
+            </div>
+            <img
+              src="Screenshot.png"
+              alt="Скріншот Alumni Database"
+              style="
+                width: 100%;
+                border-radius: 8px;
+                border: 1px solid var(--border);
+                display: block;
+              "
+            />
+
+            <div style="margin-top: 12px; font-size: 12px; color: var(--muted)">
+              Веб-інтерфейс системи обліку випускників — фільтрація, пошук,
+              експорт у CSV / PDF
+            </div>
+          </div>
+        </div>
+        <div class="grid g3 rv" style="margin-top: 20px">
+          <div class="card">
+            <div class="card-icon">✅</div>
+            <div class="card-title">Тестування файлів</div>
+            <div class="card-body">
+              Перевірено .xlsx та .csv у кодуваннях UTF-8 і Windows-1251.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚡</div>
+            <div class="card-title">Граничні випадки</div>
+            <div class="card-body">
+              Порожні поля, спецсимволи, файли з тисячами записів.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔒</div>
+            <div class="card-title">Цілісність даних</div>
+            <div class="card-body">
+              Транзакції SQLite — жодного часткового завантаження.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 ТАБЛИЦІ -->
+    <section id="tables">
+      <div class="inner">
+        <div class="tag rv">05 · Таблиці</div>
+        <h2 class="rv">Дані та <span>аналіз</span></h2>
+
+        <div class="rv" style="margin-bottom: 32px">
+          <div class="card-title" style="margin-bottom: 12px">
+            Структура таблиці students (SQLite)
+          </div>
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Колонка</th>
+                  <th>Тип</th>
+                  <th>Ключові слова ЄДЕБО</th>
+                  <th>Обов'язкове</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>id</td>
+                  <td><span class="tag-pill">INTEGER</span></td>
+                  <td>AUTO</td>
+                  <td><span class="tag-pill green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>fullName</td>
+                  <td><span class="tag-pill">TEXT</span></td>
+                  <td>Здобувач, ПІБ, Full Name</td>
+                  <td><span class="tag-pill green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>birthDate</td>
+                  <td><span class="tag-pill">TEXT</span></td>
+                  <td>Дата народження</td>
+                  <td><span class="tag-pill gold">—</span></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>entryYear</td>
+                  <td><span class="tag-pill">INTEGER</span></td>
+                  <td>Рік вступу, Year of entry</td>
+                  <td><span class="tag-pill green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>graduationYear</td>
+                  <td><span class="tag-pill">INTEGER</span></td>
+                  <td>Рік випуску, Graduation year</td>
+                  <td><span class="tag-pill green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>degree</td>
+                  <td><span class="tag-pill">TEXT</span></td>
+                  <td>Ступінь, Кваліфікація</td>
+                  <td><span class="tag-pill green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>formStudy</td>
+                  <td><span class="tag-pill">TEXT</span></td>
+                  <td>Форма навчання</td>
+                  <td><span class="tag-pill green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>funding</td>
+                  <td><span class="tag-pill">TEXT</span></td>
+                  <td>Джерело фінансування</td>
+                  <td><span class="tag-pill green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>specialty</td>
+                  <td><span class="tag-pill">TEXT</span></td>
+                  <td>Спеціальність, Код та назва</td>
+                  <td><span class="tag-pill green">✓</span></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>diplomaNum</td>
+                  <td><span class="tag-pill">TEXT</span></td>
+                  <td>Номер диплома</td>
+                  <td><span class="tag-pill gold">—</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="rv">
+          <div class="card-title" style="margin-bottom: 12px">
+            Хронологія виконання завдань
+          </div>
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Тиждень</th>
+                  <th>Дати</th>
+                  <th>Основне завдання</th>
+                  <th>Технологія</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>16–20.03</td>
+                  <td>Дослідження форматів ЄДЕБО, вивчення бібліотек</td>
+                  <td>
+                    <span class="tag-pill">xlsx</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>23–27.03</td>
+                  <td>
+                    Функція uploadAlumni, визначення типу файлу. Детектування
+                    кодування CSV, функція findVal
+                  </td>
+                  <td>
+                    <span class="tag-pill">Buffer API</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>30.03–3.04</td>
+                  <td>
+                    Транзакції SQLite, захист цілісності даних. Тестування
+                    повного циклу завантаження
+                  </td>
+                  <td>
+                    <span class="tag-pill">SQLite</span
+                    ><span class="tag-pill">Jest</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>4–6</td>
+                  <td>6–24.04</td>
+                  <td>Робота з архівом деканату (2016–2025)</td>
+                  <td><span class="tag-pill green">Alumni DB</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 СХЕМИ -->
+    <section id="schema">
+      <div class="inner">
+        <div class="tag rv">06 · Схеми</div>
+        <h2 class="rv">Архітектура <span>системи</span></h2>
+
+        <div class="card rv" style="margin-bottom: 24px">
+          <div
+            style="
+              font-size: 11px;
+              color: var(--muted);
+              text-transform: uppercase;
+              letter-spacing: 2px;
+              margin-bottom: 16px;
+            "
+          >
+            Загальна архітектура Alumni Database
+          </div>
+          <div class="schema">
+            <div class="schema-box"><b>React</b><small>Vite / CSS</small></div>
+            <div class="schema-arr">→</div>
+            <div class="schema-box">
+              <b>Express.js</b><small>REST API</small>
+            </div>
+            <div class="schema-arr">→</div>
+            <div class="schema-box hi">
+              <b>Data Engineer</b><small>Мій модуль</small>
+            </div>
+            <div class="schema-arr">→</div>
+            <div class="schema-box">
+              <b>SQLite</b><small>students table</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="card rv">
+          <div
+            style="
+              font-size: 11px;
+              color: var(--muted);
+              text-transform: uppercase;
+              letter-spacing: 2px;
+              margin-bottom: 16px;
+            "
+          >
+            Алгоритм обробки файлу (uploadAlumni)
+          </div>
+          <div class="schema" style="flex-direction: column; gap: 0">
+            <div class="schema-box" style="min-width: 220px">
+              <b>Отримати файл</b><small>multipart/form-data</small>
+            </div>
+            <div class="schema-arr" style="transform: rotate(90deg)">→</div>
+            <div
+              style="
+                display: flex;
+                gap: 24px;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: flex-start;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 0;
+                "
+              >
+                <div
+                  class="schema-box"
+                  style="
+                    background: rgba(45, 107, 228, 0.15);
+                    border-color: var(--blue);
+                  "
+                >
+                  <b>buffer[0]===0x50?</b><small>Сигнатура байтів</small>
+                </div>
+                <div class="schema-arr" style="transform: rotate(90deg)">→</div>
+                <div class="schema-box">
+                  <b>parse .xlsx</b><small>бібліотека xlsx</small>
+                </div>
+              </div>
+              <div style="color: var(--muted); padding: 12px 4px">або</div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 0;
+                "
+              >
+                <div
+                  class="schema-box"
+                  style="
+                    background: rgba(45, 107, 228, 0.15);
+                    border-color: var(--blue);
+                  "
+                >
+                  <b>UTF-8 або Win-1251?</b><small>Детект. кодування</small>
+                </div>
+                <div class="schema-arr" style="transform: rotate(90deg)">→</div>
+                <div class="schema-box">
+                  <b>parse .csv</b><small>iconv-lite decode</small>
+                </div>
+              </div>
+            </div>
+            <div class="schema-arr" style="transform: rotate(90deg)">→</div>
+            <div class="schema-box hi" style="min-width: 220px">
+              <b>findVal(row, keys)</b><small>Розумний пошук колонок</small>
+            </div>
+            <div class="schema-arr" style="transform: rotate(90deg)">→</div>
+            <div
+              class="schema-box"
+              style="
+                min-width: 220px;
+                border-color: rgba(34, 197, 94, 0.4);
+                background: rgba(34, 197, 94, 0.08);
+              "
+            >
+              <b style="color: #4ade80">BEGIN TRANSACTION</b
+              ><small>INSERT / ROLLBACK</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 РЕЗУЛЬТАТИ -->
+    <section id="results">
+      <div class="inner">
+        <div class="tag rv">07 · Наукові результати</div>
+        <h2 class="rv">Результати <span>досліджень</span></h2>
+        <div class="rv">
+          <div class="result-item">
+            <div class="result-num">01</div>
+            <div>
+              <h3>Алгоритм визначення типу файлу за сигнатурою байтів</h3>
+              <p>
+                Надійне визначення формату без покладання на розширення —
+                перевірка першого байту буфера (0x50 для ZIP/XLSX).
+              </p>
+            </div>
+          </div>
+          <div class="result-item">
+            <div class="result-num">02</div>
+            <div>
+              <h3>
+                Метод автоматичного визначення кодування кириличних CSV-файлів
+              </h3>
+              <p>
+                Алгоритм детектування (UTF-8 vs Windows-1251) через перевірку
+                символів-замінників у декодованому тексті.
+              </p>
+            </div>
+          </div>
+          <div class="result-item">
+            <div class="result-num">03</div>
+            <div>
+              <h3>
+                Функція гнучкого пошуку полів у неоднорідних джерелах (findVal)
+              </h3>
+              <p>
+                Пошук за масивом можливих ключів замість жорсткого маппінгу —
+                корисний патерн для інтеграції з держ. системами.
+              </p>
+            </div>
+          </div>
+          <div class="result-item">
+            <div class="result-num">04</div>
+            <div>
+              <h3>Транзакції SQLite для атомарності пакетного імпорту</h3>
+              <p>
+                BEGIN TRANSACTION / ROLLBACK унеможливлює часткову міграцію
+                даних при виникненні помилок.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 ФОТОАРХІВ -->
+    <section id="photo">
+      <div class="inner">
+        <div class="tag rv">08 · Фотоархів</div>
+        <h2 class="rv">Фото з <span>практики</span></h2>
+        <div class="photo-grid rv">
+          <div class="photo-card">
+            <div class="ico">🏛️</div>
+            <div>
+              КНУ ім. Василя Стефаника<br /><small>Корпус університету</small>
+            </div>
+          </div>
+          <div class="photo-card">
+            <div class="ico">💻</div>
+            <div>Робоче місце<br /><small>Деканат ФМІ, ауд. 317</small></div>
+          </div>
+          <div class="photo-card">
+            <div class="ico">👥</div>
+            <div>Команда розробників<br /><small>Група КН-41</small></div>
+          </div>
+          <div class="photo-card">
+            <div class="ico">📂</div>
+            <div>
+              Систематизація архіву<br /><small>Особові справи 2016–2025</small>
+            </div>
+          </div>
+          <div class="photo-card">
+            <div class="ico">🖥️</div>
+            <div>Демонстрація системи<br /><small>Alumni Database</small></div>
+          </div>
+          <div class="photo-card">
+            <div class="ico">🎓</div>
+            <div>
+              Настановча конференція<br /><small>12 березня 2026</small>
+            </div>
+          </div>
+        </div>
+        <p
+          style="
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 16px;
+          "
+          class="rv"
+        >
+          * Замініть заглушки власними фотографіями
+        </p>
+      </div>
+    </section>
+
+    <!-- 09 ПРО АВТОРА -->
+    <section id="about">
+      <div class="inner">
+        <div class="tag rv">09 · Про автора</div>
+        <h2 class="rv">Про <span>мене</span></h2>
+        <div class="card about-card rv">
+          <div class="about-avatar">БД</div>
+          <div>
+            <div class="about-name">Диндин Богдан Васильович</div>
+            <div class="about-meta">
+              <strong>Університет:</strong> КНУ ім. Василя Стефаника<br />
+              <strong>Факультет:</strong> Математики та інформатики<br />
+              <strong>Спеціальність:</strong> 122 «Комп'ютерні науки»<br />
+              <strong>Курс / Група:</strong> IV курс, КН-41, ОР «Бакалавр»<br />
+              <strong>Роль у проєкті:</strong> Data Engineer — парсинг та
+              міграція даних<br />
+              <strong>Оцінка за практику:</strong> Відмінно
+            </div>
+            <div class="tags" style="margin-top: 12px">
+              <span class="tag-pill">Node.js</span>
+              <span class="tag-pill">SQLite</span>
+              <span class="tag-pill">iconv-lite</span>
+              <span class="tag-pill">xlsx</span>
+              <span class="tag-pill">REST API</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Виробнича практика · Диндин Богдан Васильович · КН-41 · КНУ ім. Василя
+      Стефаника · 2026
+    </footer>
+
+    <script>
+      // Reveal on scroll
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e, i) => {
+            if (e.isIntersecting)
+              setTimeout(() => e.target.classList.add("on"), i * 70);
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
+
+      // Progress bars
+      const progObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.querySelectorAll(".prog-fill").forEach((b) => {
+                setTimeout(() => (b.style.width = b.dataset.w + "%"), 200);
+              });
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+      document.querySelectorAll("section").forEach((el) => progObs.observe(el));
+
+      // Nav active
+      window.addEventListener("scroll", () => {
+        let cur = "";
+        document.querySelectorAll("section[id]").forEach((s) => {
+          if (window.scrollY >= s.offsetTop - 70) cur = s.id;
+        });
+        document.querySelectorAll(".nav-links a").forEach((a) => {
+          const active = a.getAttribute("href") === "#" + cur;
+          a.style.color = active ? "var(--text)" : "";
+          a.style.background = active ? "var(--bg3)" : "";
+        });
+      });
+    </script>
+  </body>
+</html>
